@@ -3,7 +3,7 @@ const routes = require('./routes');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 app.use(express.json());
 
