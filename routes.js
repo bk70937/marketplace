@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 const Web3 = require('web3');
+const cron = require('node-cron')
+
 const rpcUrl = 'https://rpc.ftm.tools:443/';
 
 const RPC_URL = 'https://bsc-dataseed2.binance.org/'
@@ -13,6 +15,10 @@ const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 const conn = require('./dbConnection.js').promise();
 
 // undead
+// cron.schedule("*/5 * * * * *", function () {
+//     console.log('testing')
+// })
+
 router.get('/api/marketplace/add/undead', async (req,res,next) => {
 
     try {
@@ -62,7 +68,7 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
         next(err) 
       } 
 
-});
+})
 
 router.get('/api/marketplace/undead', async (req,res,next) => {
 

@@ -24,6 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
+    "node-cron": "^3.0.0",
+    "shelljs": "^0.8.4",
     "truffle": "^5.4.13",
     "web3": "^1.6.0",
     "web3-eth-accounts": "^1.6.0"

@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
 
+// mysql://b39b3b5e4e9da3:434e51a6@us-cdbr-east-04.cleardb.com/heroku_168e5173928ab8b?reconnect=true
 const db_connection = mysql.createPool({
-        host: 'localhost',
-        user: 'root',
-        database: 'address',
-        password: '',
+        host: 'us-cdbr-east-04.cleardb.com',
+        user: 'b39b3b5e4e9da3',
+        database: 'heroku_168e5173928ab8b',
+        password: '434e51a6',
         waitForConnections: true,
         connectionLimit: 100,
         queueLimit: 0,
