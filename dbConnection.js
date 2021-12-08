@@ -6,12 +6,10 @@ const db_connection = mysql
         user: 'ba1e7fc73b785d',
         database: 'heroku_100252bdc5a6a6f',
         password: '7cdbd463',
+        connectionLimit: 100
     })
     .on("error", (err) => {
         console.log("Failed to connect to Database - ", err);
     });
 
 module.exports = db_connection;
-
-
-

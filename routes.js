@@ -47,8 +47,9 @@ router.get('/api/bmarketplace', async (req,res,next) => {
           ]);
     
           if (rows.affectedRows === 1) {
+            connection.destroy();
             return res.status(201).json({
-                message: "The user has been inserted successfully.",
+                message: "The data has been inserted successfully.",
             });
           }
     
@@ -56,7 +57,7 @@ router.get('/api/bmarketplace', async (req,res,next) => {
         }
       } catch(err){
         next(err) 
-      }
+      } 
 
 });
 
@@ -65,7 +66,7 @@ router.get('/api/marketplace', async (req,res,next) => {
     try {
 
         const [row] = await conn.execute(
-            "SELECT `id`, `onsale`, `sold`, `instant` FROM `marketplace` ORDER BY id DESC LIMIT 1"
+            "SELECT * FROM `marketplace` ORDER BY id DESC LIMIT 1"
         );
     
         if(row.length > 0){
