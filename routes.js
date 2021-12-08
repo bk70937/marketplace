@@ -9,7 +9,7 @@ const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 // Database Connection
 const conn = require('./dbConnection.js').promise();
 
-router.get('/api/bmarketplace', async (req,res,next) => {
+router.get('/api/marketplace/add/undead', async (req,res,next) => {
 
     try {
         const web3 = new Web3(rpcUrl)
@@ -60,7 +60,7 @@ router.get('/api/bmarketplace', async (req,res,next) => {
 
 });
 
-router.get('/api/marketplace', async (req,res,next) => {
+router.get('/api/marketplace/undead', async (req,res,next) => {
 
     try {
 
