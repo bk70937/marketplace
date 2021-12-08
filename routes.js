@@ -73,7 +73,7 @@ router.get('/api/marketplace', async (req,res,next) => {
         }
 
         res.json({
-            message:"No user found"
+            message:"No data found"
         });
         
       } catch(err){
