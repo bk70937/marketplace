@@ -47,7 +47,6 @@ router.get('/api/bmarketplace', async (req,res,next) => {
           ]);
     
           if (rows.affectedRows === 1) {
-            connection.destroy();
             return res.status(201).json({
                 message: "The data has been inserted successfully.",
             });

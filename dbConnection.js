@@ -1,13 +1,14 @@
 const mysql = require('mysql2');
 
-const db_connection = mysql
-    .createConnection({
+const db_connection = mysql.createPool({
         host: 'us-cdbr-east-04.cleardb.com',
         user: 'ba1e7fc73b785d',
         database: 'heroku_100252bdc5a6a6f',
         password: '7cdbd463',
-        connectionLimit : 100,
-        debug    :  false
+        waitForConnections: true,
+        connectionLimit: 100,
+        queueLimit: 0,
+        port: 3306
     })
     .on("error", (err) => {
         console.log("Failed to connect to Database - ", err);
