@@ -51,7 +51,6 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
         }
         if(i == (count-1)) {
             let data = {
-                id: id,
                 onsale : onsale.join(','),
                 sold : sold.join(','),
                 instant : instant.join(','),
@@ -99,6 +98,7 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
         for(let i = 0 ; i < count ; i++ ) {
     
         let _statusF =  await contract.methods.getFullTrade(i).call() ;
+        console.log(_statusF)
         if(_statusF[8]){
           let _status =  await contract.methods.getAuctionStatus(i).call() ;
           if(_status == 1){
@@ -116,7 +116,6 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
         }
         if(i == (count-1)) {
             let data = {
-                id: id,
                 onsale : onsale.join(','),
                 sold : sold.join(','),
                 instant : instant.join(','),
@@ -149,7 +148,6 @@ router.get('/api/marketplace/wizard', async (req, res, next) => {
          
 })
 
-
 router.get('/api/marketplace/wizarddata', async (req, res, next) => {
     try {
         const web3 = new Web3(RPC_URL)
@@ -163,7 +161,6 @@ router.get('/api/marketplace/wizarddata', async (req, res, next) => {
         for(let i = 0 ; i < count ; i++ ) {
     
         let _statusF =  await contract.methods.getFullTrade(i).call() ;
-        // console.log(_statusF)
         return res.json(_statusF)
         // if(i == (count-1)) {
         //     let data = {
