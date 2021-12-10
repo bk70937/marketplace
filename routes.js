@@ -17,6 +17,9 @@ const address_wizard = "0x7B1294C50758ed380C1ff9295fFB1797e33DE7E7"
 const MARKETPLACE_ABI = require('./config/MARKETPLACE_ABI.json')
 const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 
+const WARRIOR_ABI = require('./config/WARRIOR_ABI.json')
+const warrior_address = '0x752C62a41713BB8c95dE7e4551195059be3bDA63'
+
 // Database Connection
 const conn = require('./dbConnection.js').promise();
 
@@ -178,6 +181,24 @@ router.get('/api/marketplace/wizarddata', async (req, res, next) => {
       } catch(err){
         next(err) 
       } 
+})
+
+
+
+
+router.get('/api/test/:start/:end', async  (req, res, next) => {
+        let _web3 = new Web3(RPC_URL);
+        const _warriorContract = new _web3.eth.Contract(WARRIOR_ABI, warrior_address);
+       
+          _warriorContract.getPastEvents("allEvents", {
+            fromBlock: req.params.start,
+            toBlock: req.params.end,
+       }, function(error, events){ 
+        //   return events;
+          return res.json(events)
+       })
+
+ 
 })
 
 module.exports = router;
