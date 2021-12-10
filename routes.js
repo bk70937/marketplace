@@ -27,8 +27,6 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
         const web3 = new Web3(rpcUrl)
         const contract = new web3.eth.Contract(MARKETPLACE_ABI, address)
         let count = await contract.methods.getTradeCount().call()
-        let id = 1
-        id = id++
         let onsale = [];
         let sold = [];
         let instant = [];
@@ -58,6 +56,9 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
                 sold : sold.join(','),
                 instant : instant.join(','),
             };
+
+            console.log(onsale)
+
             const wizard = await Wizard.create(data)
 
             res.status(201).json({
@@ -91,8 +92,6 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
         const web3 = new Web3(RPC_URL)
         const contract = new web3.eth.Contract(MARKETPLACE_ABI, address_wizard)
         let count = await contract.methods.getTradeCount().call()
-        let id = 1
-        id = id++
         let onsale = [];
         let sold = [];
         let instant = [];
