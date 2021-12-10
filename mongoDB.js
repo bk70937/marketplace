@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
 // const connectDatabase = () => {
 //     mongoose.connect('mongodb://localhost:27017/wizard', {
 //         useNewUrlParser: true,
