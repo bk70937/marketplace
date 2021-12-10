@@ -59,8 +59,7 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
             const wizard = await Wizard.create(data)
 
             res.status(201).json({
-                success: true, 
-                wizard
+                message: 'Data Inserted Successfully'
             })
             
         }
@@ -122,8 +121,7 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
             const undead = await Undead.create(data)
 
             res.status(201).json({
-                success: true, 
-                undead
+                message: 'Data Inserted Successfully'
             })
             
         }
