@@ -213,6 +213,9 @@ router.get('/api/marketplace/lister/wizard/:address', async (req, res, next) => 
         if(wizard.length > 0){
             return res.status(200).json(wizard);
         }
+        else{
+            return res.status(200).json([]);
+        }
     } catch(err){
         next(err);
     } 
@@ -277,6 +280,9 @@ router.get('/api/marketplace/lister/undead/:address', async (req, res, next) => 
         const undead = await UndeadData.find({ "lister": req.params.address })
         if(undead.length > 0){
             return res.status(200).json(undead);
+        }
+        else{
+            return res.status(200).json([]);
         }
     } catch(err){
         next(err);
