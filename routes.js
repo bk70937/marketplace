@@ -272,7 +272,7 @@ router.get('/api/marketplace/list/undeaddata', async (req, res, next) => {
     }   
 })
 
-router.get('/api/marketplace/listerundead:address', async (req, res, next) => {
+router.get('/api/marketplace/listerundead/:address', async (req, res, next) => {
     try {
         const undead = await UndeadData.find({ "lister": req.params.address })
         if(undead.length > 0){
