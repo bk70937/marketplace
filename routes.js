@@ -6,19 +6,23 @@ const Web3 = require('web3');
 
 // MongoDB
 const mongoose = require('mongoose');
+
+// models
 const Wizard = require('./models/wizard')
 const WizardData = require('./models/wizarddata')
 
 const Undead = require('./models/undead')
 const UndeadData = require('./models/undeaddata')
 
-const rpcUrl = 'https://rpc.ftm.tools:443/';
+// undead
+const rpcUrl = 'https://rpc.ftm.tools:443/'; 
+const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 
-const RPC_URL = 'https://bsc-dataseed2.binance.org/'
+// wizard
+const RPC_URL = 'https://bsc-dataseed2.binance.org/' 
 const address_wizard = "0x7B1294C50758ed380C1ff9295fFB1797e33DE7E7"
 
 const MARKETPLACE_ABI = require('./config/MARKETPLACE_ABI.json')
-const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 
 const WARRIOR_ABI = require('./config/WARRIOR_ABI.json');
 const warrior_address = '0x752C62a41713BB8c95dE7e4551195059be3bDA63'
@@ -63,7 +67,7 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
             };
 
 
-            const wizard = await Wizard.create(data)
+            const undead = await Undead.create(data)
 
             res.status(201).json({
                 message: 'Data Inserted Successfully'
@@ -80,7 +84,7 @@ router.get('/api/marketplace/add/undead', async (req,res,next) => {
 router.get('/api/marketplace/undead', async (req, res, next) => {
 
     try {
-        const undead = await Wizard.find().sort({_id:-1}).limit(1)
+        const undead = await Undead.find().sort({_id:-1}).limit(1)
         if(undead.length > 0){
             return res.status(200).json(undead);
         }
@@ -124,7 +128,7 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
                 sold : sold.join(','),
                 instant : instant.join(','),
             };
-            const undead = await Undead.create(data)
+            const wizard = await Wizard.create(data)
 
             res.status(201).json({
                 message: 'Data Inserted Successfully'
@@ -141,7 +145,7 @@ router.get('/api/marketplace/add/wizard', async (req,res,next) => {
 router.get('/api/marketplace/wizard', async (req, res, next) => {
 
     try {
-        const wizard = await Undead.find().sort({_id:-1}).limit(1)
+        const wizard = await Wizard.find().sort({_id:-1}).limit(1)
         if(wizard.length > 0){
             return res.status(200).json(wizard);
         }
@@ -156,8 +160,8 @@ router.get('/api/marketplace/wizard', async (req, res, next) => {
 // wizard data
 router.get('/api/marketplace/add/wizarddata', async (req, res, next) => {
     try {
-        const web3 = new Web3(rpcUrl)
-        const contract = new web3.eth.Contract(MARKETPLACE_ABI, address)
+        const web3 = new Web3(RPC_URL)
+        const contract = new web3.eth.Contract(MARKETPLACE_ABI, address_wizard)
         let count = await contract.methods.getTradeCount().call()
     
         for(let i = 0 ; i < count ; i++ ) {
@@ -225,8 +229,8 @@ router.get('/api/marketplace/lister/wizard/:address', async (req, res, next) => 
 // undead data
 router.get('/api/marketplace/add/undeaddata', async (req, res, next) => {
     try {
-        const web3 = new Web3(RPC_URL)
-        const contract = new web3.eth.Contract(MARKETPLACE_ABI, address_wizard)
+        const web3 = new Web3(rpcUrl)
+        const contract = new web3.eth.Contract(MARKETPLACE_ABI, address)
         let count = await contract.methods.getTradeCount().call()
     
         for(let i = 0 ; i < count ; i++ ) {
