@@ -207,7 +207,7 @@ router.get('/api/marketplace/list/wizarddata', async (req, res, next) => {
     }   
 })
 
-router.get('/api/marketplace/listerwizard/:address', async (req, res, next) => {
+router.get('/api/marketplace/lister/wizard/:address', async (req, res, next) => {
     try {
         const wizard = await WizardData.find({ "lister": req.params.address })
         if(wizard.length > 0){
@@ -272,7 +272,7 @@ router.get('/api/marketplace/list/undeaddata', async (req, res, next) => {
     }   
 })
 
-router.get('/api/marketplace/listerundead/:address', async (req, res, next) => {
+router.get('/api/marketplace/lister/undead/:address', async (req, res, next) => {
     try {
         const undead = await UndeadData.find({ "lister": req.params.address })
         if(undead.length > 0){
