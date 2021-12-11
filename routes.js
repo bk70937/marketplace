@@ -21,7 +21,6 @@ const MARKETPLACE_ABI = require('./config/MARKETPLACE_ABI.json')
 const address = "0x64eF011168188ccdA22b4d70D146Fb019906bAF6";
 
 const WARRIOR_ABI = require('./config/WARRIOR_ABI.json');
-const { isNull } = require('lodash');
 const warrior_address = '0x752C62a41713BB8c95dE7e4551195059be3bDA63'
 
 // Database Connection
@@ -208,9 +207,9 @@ router.get('/api/marketplace/list/wizarddata', async (req, res, next) => {
     }   
 })
 
-router.get('/api/marketplace/lister/wizarddata', async (req, res, next) => {
+router.get('/api/marketplace/listerwizard/:address', async (req, res, next) => {
     try {
-        const wizard = await WizardData.find({"lister":{$exists:true}})
+        const wizard = await WizardData.find({ "lister": req.params.address })
         if(wizard.length > 0){
             return res.status(200).json(wizard);
         }
@@ -273,9 +272,9 @@ router.get('/api/marketplace/list/undeaddata', async (req, res, next) => {
     }   
 })
 
-router.get('/api/marketplace/lister/undeaddata', async (req, res, next) => {
+router.get('/api/marketplace/listerundead:address', async (req, res, next) => {
     try {
-        const undead = await UndeadData.find({"lister":{$exists:true}})
+        const undead = await UndeadData.find({ "lister": req.params.address })
         if(undead.length > 0){
             return res.status(200).json(undead);
         }
